@@ -6,14 +6,16 @@
     <title>Showcase PDF</title>
     <style>
       :root {
-        color-scheme: light;
-        --canvas: #f3f4f6;
-        --surface: #ffffff;
-        --text: #111827;
-        --muted: #6b7280;
-        --border: #d1d5db;
-        --button: #111827;
-        --button-hover: #374151;
+        color-scheme: dark;
+        --canvas: #09090b;
+        --surface: #18181b;
+        --surface-elevated: #111113;
+        --text: #fafafa;
+        --muted: #a1a1aa;
+        --border: #27272a;
+        --button: #fafafa;
+        --button-hover: #e4e4e7;
+        --button-text: #18181b;
         --header-height: 4.5rem;
       }
 
@@ -39,7 +41,7 @@
       .site-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         gap: 1rem;
         min-height: var(--header-height);
         padding: 0.75rem clamp(1rem, 3vw, 2rem);
@@ -47,25 +49,17 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .site-title {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-      }
-
       .download-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
         min-height: 2.75rem;
-        padding: 0.625rem 0.875rem;
+        width: 2.75rem;
+        padding: 0;
+        border: 1px solid var(--border);
         border-radius: 0.375rem;
         background: var(--button);
-        color: var(--surface);
-        font-size: 0.875rem;
-        font-weight: 600;
+        color: var(--button-text);
         text-decoration: none;
         transition: background-color 150ms ease, transform 150ms ease;
         touch-action: manipulation;
@@ -80,13 +74,13 @@
       }
 
       .download-button:focus-visible {
-        outline: 3px solid #93c5fd;
+        outline: 3px solid #60a5fa;
         outline-offset: 2px;
       }
 
       .download-icon {
-        width: 1rem;
-        height: 1rem;
+        width: 1.125rem;
+        height: 1.125rem;
         fill: none;
         stroke: currentColor;
         stroke-linecap: round;
@@ -106,7 +100,7 @@
         overflow: hidden;
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        background: var(--surface);
+        background: var(--surface-elevated);
       }
 
       .pdf-viewer object {
@@ -137,18 +131,6 @@
           min-height: 4rem;
         }
 
-        .download-button {
-          padding-inline: 0.75rem;
-        }
-
-        .download-button span {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          overflow: hidden;
-          clip: rect(0 0 0 0);
-          white-space: nowrap;
-        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -162,20 +144,24 @@
   </head>
   <body>
     <header class="site-header">
-      <h1 class="site-title">Showcase</h1>
-      <a class="download-button" href="HarshaVardhanFD.pdf" download="HarshaVardhanFD.pdf">
+      <a
+        class="download-button"
+        href="HarshaVardhanFD.pdf"
+        download="HarshaVardhanFD.pdf"
+        aria-label="Download HarshaVardhanFD.pdf"
+        title="Download HarshaVardhanFD.pdf"
+      >
         <svg class="download-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3v12" />
           <path d="m7 10 5 5 5-5" />
           <path d="M5 21h14" />
         </svg>
-        <span>Download PDF</span>
       </a>
     </header>
 
     <main class="viewer-shell">
-      <section class="pdf-viewer" aria-label="Showcase PDF viewer">
-        <object data="HarshaVardhanFD.pdf#zoom=page-width" type="application/pdf" aria-label="HarshaVardhanFD PDF">
+      <section class="pdf-viewer" aria-label="PDF viewer">
+        <object data="HarshaVardhanFD.pdf#pagemode=none&zoom=page-width" type="application/pdf" aria-label="HarshaVardhanFD PDF">
           <div class="pdf-fallback">
             <span>PDF preview is unavailable in this browser.</span>
             <a href="HarshaVardhanFD.pdf" download="HarshaVardhanFD.pdf">Download HarshaVardhanFD.pdf</a>
