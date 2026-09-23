@@ -145,11 +145,12 @@
   <body>
     <header class="site-header">
       <a
+        id="downloadButton"
         class="download-button"
-        href="HarshaVardhanFD.pdf"
-        download="HarshaVardhanFD.pdf"
-        aria-label="Download HarshaVardhanFD.pdf"
-        title="Download HarshaVardhanFD.pdf"
+        href="01-harsha-vardhan-fd.pdf"
+        download="01-harsha-vardhan-fd.pdf"
+        aria-label="Download 01-harsha-vardhan-fd.pdf"
+        title="Download 01-harsha-vardhan-fd.pdf"
       >
         <svg class="download-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3v12" />
@@ -161,13 +162,36 @@
 
     <main class="viewer-shell">
       <section class="pdf-viewer" aria-label="PDF viewer">
-        <object data="HarshaVardhanFD.pdf#pagemode=none&zoom=page-width" type="application/pdf" aria-label="HarshaVardhanFD PDF">
+        <object id="pdfViewer" data="01-harsha-vardhan-fd.pdf#pagemode=none&zoom=page-width" type="application/pdf" aria-label="01-harsha-vardhan-fd PDF">
           <div class="pdf-fallback">
             <span>PDF preview is unavailable in this browser.</span>
-            <a href="HarshaVardhanFD.pdf" download="HarshaVardhanFD.pdf">Download HarshaVardhanFD.pdf</a>
+            <a id="fallbackDownload" href="01-harsha-vardhan-fd.pdf" download="01-harsha-vardhan-fd.pdf">Download 01-harsha-vardhan-fd.pdf</a>
           </div>
         </object>
       </section>
     </main>
+    <script>
+      // === Resume config: change this one line to switch resumes ===
+      // Available:
+      // - "01-harsha-vardhan-fd.pdf"
+      // - "02-harsha-resume-2024-02-06.pdf"
+      // - "03-harsha-resume-main.pdf"
+      const ACTIVE_RESUME = "01-harsha-vardhan-fd.pdf";
+
+      const viewer = document.getElementById("pdfViewer");
+      const downloadButton = document.getElementById("downloadButton");
+      const fallbackDownload = document.getElementById("fallbackDownload");
+
+      viewer.setAttribute("data", `${ACTIVE_RESUME}#pagemode=none&zoom=page-width`);
+      viewer.setAttribute("aria-label", `${ACTIVE_RESUME} PDF`);
+
+      for (const link of [downloadButton, fallbackDownload]) {
+        link.setAttribute("href", ACTIVE_RESUME);
+        link.setAttribute("download", ACTIVE_RESUME);
+        link.setAttribute("aria-label", `Download ${ACTIVE_RESUME}`);
+        link.setAttribute("title", `Download ${ACTIVE_RESUME}`);
+        if (link === fallbackDownload) link.textContent = `Download ${ACTIVE_RESUME}`;
+      }
+    </script>
   </body>
 </html>
